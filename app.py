@@ -10,6 +10,11 @@ app = Flask(__name__)
 def hello_world():
     return JSON
 
+@app.route('/reset')
+def reset():
+    global  JSON
+    JSON = ''
+    return 'OK'
 
 @app.route('/set', methods=['POST'])
 def set_json():
