@@ -1,6 +1,7 @@
 from flask import Flask, request
+import json
 
-JSON = {}
+JSON = ''
 
 app = Flask(__name__)
 
@@ -10,13 +11,13 @@ def hello_world():
     return JSON
 
 
-@app.route('/set', methods=['GET', 'POST'])
+@app.route('/set', methods=['POST'])
 def set_json():
     global JSON
-    JSON = request.json
-    return JSON
+    JSON += str(request.json)+'\n'
+    return 'OK', 418
 
 
 if __name__ == '__main__':
     print("YOBA")
-    app.run(host='http://youtrack.raiko.io', port=4800)
+    app.run(host='0.0.0.0', port=4800)
